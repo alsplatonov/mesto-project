@@ -1,0 +1,5 @@
+.profile__summary {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
