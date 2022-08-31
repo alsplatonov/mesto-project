@@ -4,7 +4,8 @@
   min-height: 50px;
   border-radius: 2px;
   padding: 0;
-  margin: 46px 0 0;
+  margin-top: 48px;
+  margin-bottom: 0;
   box-sizing: border-box;
   width: 100%;
   transition: opacity .3s ease;
@@ -23,11 +24,10 @@
 
 
 @media screen and (max-width:560px) {
-  .popup__submit-btn {
+  .popup__submit-button {
     font-size: 14px;
     min-height: 46px;
-    margin: 36px 0 0;
-
+    margin: 45px 0 25px;
     font-size: 14px;
     line-height: 17px;
   }
