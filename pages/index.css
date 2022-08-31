@@ -30,7 +30,7 @@
 @import url(../blocks/footer/__title/footer__title.css);
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__close/popup__close.css);
+@import url(../blocks/popup/__close-button/__close-button.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
@@ -42,9 +42,9 @@
 
 
 
-
+/* 
 
 
 * {
   box-shadow: 0 0 2px red;
-}
+} */
