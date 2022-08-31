@@ -27,7 +27,8 @@
   .popup__submit-button {
     font-size: 14px;
     min-height: 46px;
-    margin: 45px 0 25px;
+    margin-top: 45px;
+    margin-bottom: 0;
     font-size: 14px;
     line-height: 17px;
   }

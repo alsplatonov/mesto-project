@@ -1,9 +1,6 @@
 .elements {
   padding: 0;
-
   box-sizing: border-box;
-  /* padding-top: 50px; */
-
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(282px, 1fr)); */
   grid-template-columns: repeat(auto-fit, 282px);
