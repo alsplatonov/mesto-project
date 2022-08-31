@@ -1,12 +1,9 @@
 .element {
   box-sizing: border-box;
-  margin: 0 auto;
   padding: 0;
   max-width: 282px;
   background: #FFFFFF;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-
-
 }
