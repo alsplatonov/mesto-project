@@ -3,7 +3,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  margin: 7px 0 0;
+  margin: 16px 0 0;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -13,5 +13,6 @@
   .profile__subtitle {
     text-align: center;
     font-size: 14px;
+    margin-top: 14px;
   }
 }

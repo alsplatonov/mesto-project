@@ -3,3 +3,9 @@
   align-items: baseline;
   gap: 18px;
 }
+
+@media screen and (max-width: 560px) {
+  .profile__summary {
+    gap: 10px;
+  }
+}
