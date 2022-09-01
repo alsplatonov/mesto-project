@@ -1,6 +1,5 @@
 .page {
   box-sizing: border-box;
-  padding: 0;
   background: #000000;
   margin: 0 auto;
   color: #FFFFFF;
@@ -10,7 +9,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 @media screen and (max-width: 950px) {
   .page {
@@ -23,7 +21,6 @@
     padding: 40px 0;
   }
 }
-
 
 @media screen and (max-width: 560px) {
   .page {

@@ -1,11 +1,9 @@
 .popup__container {
   box-sizing: border-box;
   width: 430px;
-  height: 330px;
   position: relative;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   padding: 34px 36px 37px;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
@@ -15,7 +13,6 @@
 @media screen and (max-width: 560px) {
   .popup__container {
     width: 282px;
-    height: 322px;
     padding: 25px 22px 25px;
   }
 }

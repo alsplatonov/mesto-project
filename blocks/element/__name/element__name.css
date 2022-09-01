@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   display: flex;
-  padding: 25px 20px 31px;
+  padding: 25px 20px 25px;
   justify-content: space-between;
   align-items: baseline;
   gap: 10px;

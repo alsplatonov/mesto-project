@@ -1,5 +1,4 @@
 .profile {
-  padding: 0;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -7,11 +6,10 @@
   padding: 40px 0 50px;
 }
 
-/* @media screen and (max-width: 767px) { */
 @media screen and (max-width: 850px) {
   .profile {
     flex-direction: column;
-    padding: 42px 0 36px;
+    padding-top: 42px;
+    padding-bottom: 36px;
   }
 }
-

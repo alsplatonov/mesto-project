@@ -1,4 +1,4 @@
-@import url(../styles/normalize.css);
+@import url(../vendor/normalize.css);
 @import url(../vendor/fonts/font.css);
 
 @import url(../blocks/page/page.css);
@@ -30,7 +30,7 @@
 @import url(../blocks/footer/__title/footer__title.css);
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__close-button/__close-button.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
