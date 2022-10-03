@@ -1,0 +1,9 @@
+.element__profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 15px 31px 21px;
+  background-color: white;
+  width: 282px;
+  box-sizing: border-box;
+}
