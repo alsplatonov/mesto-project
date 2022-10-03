@@ -31,7 +31,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
 
-      <section class="elements page__defaults">
+      <!-- <section class="elements page__defaults">
         <div class="element">
           <img class="element__img" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="Карачаевск">
           <div class="element__name">
@@ -74,14 +74,21 @@
             <button class="element__like-button" type="button"></button>
           </div>
         </div>
+      </section> -->
+
+      <section class="elements page__defaults">
+
       </section>
+
     </main>
+
 
     <footer class="footer page__defaults">
       <p class="footer__title"> &copy; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <!-- <div class="popupEdit"> -->
+    <div class="popup header-popup">
       <!-- <div class="popup popup_opened"> -->
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
@@ -95,7 +102,35 @@
       </div>
     </div>
 
+    <div class="popup card-popup">
+      <div class="popup__container">
+        <h3 class="popup__title">Новое место</h3>
+        <form class="popup__form" name="popupForm">
+          <input class="popup__input" type="text" name="name" placeholder="Название" minlength="2" maxlength="20"
+            required>
+          <input class="popup__input" type="text" name="about" placeholder="Ссылка на картинку" minlength="2"
+            maxlength="300" required>
+          <button class="popup__submit-button" type="submit">Создать</button>
+        </form>
+        <button class="popup__close-button" type="button"></button>
+      </div>
+    </div>
+
   </div>
+
+
+  <template id="element">
+    <div class="element">
+      <img class="element__img">
+      <div class="element__name">
+        <h2 class="element__title"></h2>
+        <button class="element__like-button" type="button"></button>
+      </div>
+      <!-- <button class="element__delete-button" type="button"></button> -->
+    </div>
+  </template>
+
+  <script src="./pages/index.js"></script>
 </body>
 
 </html>
