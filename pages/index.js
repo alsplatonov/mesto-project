@@ -2,10 +2,12 @@ const container = document.querySelector('.container');
 const editButton = container.querySelector('.profile__edit-button');
 const addButton = container.querySelector('.profile__add-button');
 const closeButton = document.querySelectorAll('.popup__close-button');
-const popupImgButton = container.querySelector('.element__img');
+const popupImgButton = container.querySelectorAll('.element__img');
 const formElementEdit = document.querySelector('.popup__header');
 const formElementAdd = document.querySelector('.popup__card');
 const formElementImg = document.querySelector('.popup__image');
+const imgSrc = formElementImg.querySelector('.popup__img');
+const imgTitle = formElementImg.querySelector('.popup__image-title');
 const formElement = document.querySelectorAll('.popup');
 const nameInput = formElementEdit.querySelectorAll('.popup__input')[0];
 const jobInput = formElementEdit.querySelectorAll('.popup__input')[1];
@@ -44,13 +46,21 @@ const initialCards = [
 
 function openEditForm() { //открыть форму редактирования профиля
   formElementEdit.classList.add('popup_opened');
-  openFormEditAttr = formElementEdit.querySelectorAll('.popup__input');
+  // openFormEditAttr = formElementEdit.querySelectorAll('.popup__input');
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
 }
 
 function openAddForm() { //открыть форму добавления карточки
   formElementAdd.classList.add('popup_opened');
+}
+
+function openImgForm() { //открыть форму добавления карточки
+  formElementImg.classList.add('popup_opened');
+
+  imgSrc.setAttribute("src", 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg');
+
+  imgTitle.textContent = 'testsssssssssssssssssssss';
 }
 
 //закрыть попап 
@@ -78,6 +88,20 @@ function addElement(elementName, elementLink) {
       listItem.remove();
     })
   };
+  const openImgButton = elementElement.querySelectorAll('.element__img');
+  for (let i = 0; i < openImgButton.length; i++) {
+    // openImgButton[i].addEventListener('click', openImgForm);
+
+    openImgButton[i].addEventListener('click', function (evt) {
+      formElementImg.classList.add('popup_opened');
+
+
+      imgSrc.setAttribute("src", elementLink);
+
+      imgTitle.textContent = elementName;
+    });
+  }
+
   elements.prepend(elementElement);
 }
 //обработчики форм
@@ -97,6 +121,8 @@ function formSubmitHandlerAdd(evt) {
 editButton.addEventListener('click', openEditForm);
 
 addButton.addEventListener('click', openAddForm);
+
+//  popupImgButton.addEventListener('click', openImgForm);
 
 for (let i = 0; i < formElement.length; i++) {
   closeButton[i].addEventListener('click', closePopup);

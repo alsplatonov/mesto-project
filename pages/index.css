@@ -37,15 +37,12 @@
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-
-
-
-
-
-
+@import url(../blocks/popup/__image/popup__img.css);
+@import url(../blocks/popup/__image-title/popup_image-title.css);
+@import url(../blocks/popup/popup__container_image.css);
 
 
 
 /* * {
   box-shadow: 0 0 2px red;
-} */
+}   */
