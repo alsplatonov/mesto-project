@@ -46,7 +46,6 @@ const initialCards = [
 
 function openEditForm() { //открыть форму редактирования профиля
   formElementEdit.classList.add('popup_opened');
-  // openFormEditAttr = formElementEdit.querySelectorAll('.popup__input');
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
 }
@@ -55,55 +54,59 @@ function openAddForm() { //открыть форму добавления кар
   formElementAdd.classList.add('popup_opened');
 }
 
-function openImgForm() { //открыть форму добавления карточки
-  formElementImg.classList.add('popup_opened');
-
-  imgSrc.setAttribute("src", 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg');
-
-  imgTitle.textContent = 'testsssssssssssssssssssss';
-}
-
 //закрыть попап 
 function closePopup() {
   for (let i = 0; i < formElement.length; i++) {
     formElement[i].classList.remove('popup_opened');
   }
 }
-//добавление элементов
-function addElement(elementName, elementLink) {
-  const elementTemplate = document.querySelector('#element').content;
-  const elementElement = elementTemplate.querySelector('.element').cloneNode(true);
 
-  elementElement.querySelector('.element__title').textContent = elementName;
-  elementElement.querySelector('.element__img').setAttribute("src", elementLink);
-  //поставить/убрать лайк
-  elementElement.querySelector('.element__like-button').addEventListener('click', function (evt) {
+//поставить/убрать лайк
+function addLike(elem) {
+  elem.querySelector('.element__like-button').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like-button_active')
   });
-  //удалить карточку
-  const deleteButton = elementElement.querySelectorAll('.element__delete-button');
+}
+
+//удалить карточку
+function deleteCard(elem) {
+  let deleteButton = elem.querySelectorAll('.element__delete-button');
   for (let i = 0; i < deleteButton.length; i++) {
     deleteButton[i].addEventListener('click', function () {
-      const listItem = deleteButton[i].closest('.element');
+      let listItem = deleteButton[i].closest('.element');
       listItem.remove();
     })
   };
-  const openImgButton = elementElement.querySelectorAll('.element__img');
-  for (let i = 0; i < openImgButton.length; i++) {
-    // openImgButton[i].addEventListener('click', openImgForm);
+}
 
+//Открыть картинку
+function openImg(elem, elementLink, elementName) {
+  let openImgButton = elem.querySelectorAll('.element__img');
+  for (let i = 0; i < openImgButton.length; i++) {
     openImgButton[i].addEventListener('click', function (evt) {
       formElementImg.classList.add('popup_opened');
-
-
       imgSrc.setAttribute("src", elementLink);
-
       imgTitle.textContent = elementName;
     });
   }
-
-  elements.prepend(elementElement);
 }
+
+//добавление элементов
+function addElement(elementName, elementLink) {
+  let elementTemplate = document.querySelector('#element').content;
+  let elementElement = elementTemplate.querySelector('.element').cloneNode(true);
+  elementElement.querySelector('.element__title').textContent = elementName;
+  elementElement.querySelector('.element__img').setAttribute("src", elementLink);
+
+  addLike(elementElement);  //поставить/убрать лайк
+
+  deleteCard(elementElement); //удалить карточку
+
+  openImg(elementElement, elementLink, elementName); //открыть карточку
+
+  elements.prepend(elementElement); //добавить карточку
+}
+
 //обработчики форм
 function formSubmitHandlerEdit(evt) {
   evt.preventDefault();
@@ -122,8 +125,6 @@ editButton.addEventListener('click', openEditForm);
 
 addButton.addEventListener('click', openAddForm);
 
-//  popupImgButton.addEventListener('click', openImgForm);
-
 for (let i = 0; i < formElement.length; i++) {
   closeButton[i].addEventListener('click', closePopup);
 };
@@ -138,14 +139,3 @@ initialCards.forEach(function (item) {
 formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 
 formElementAdd.addEventListener('submit', formSubmitHandlerAdd);
-
-// добавим обработчик
-
-
-
-// for (let i = 0; i < deleteButton.length; i++) {
-//   deleteButton[i].addEventListener('click', function () {
-//     const listItem = deleteButton[i].closest('.element');
-//     listItem.remove();
-//   })
-// };

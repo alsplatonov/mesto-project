@@ -8,6 +8,7 @@
   padding: 0;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
+  transition: opacity .3s ease-in;
 }
 
 .element__img:hover {
