@@ -4,3 +4,5 @@
 
 Stack: HTML5, CSS3, Flex, Grip, позициование, БЭМ,  adaptive design, Forms
 
+Ссылка на GitHub Pages: https://alsplatonov.github.io/mesto-project/
+
