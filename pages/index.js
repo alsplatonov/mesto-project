@@ -7,7 +7,7 @@ const formElementEdit = document.querySelector('.popup__header');
 const formElementAdd = document.querySelector('.popup__card');
 const formElementImg = document.querySelector('.popup__image');
 const imgSrc = formElementImg.querySelector('.popup__img');
-const imgTitle = formElementImg.querySelector('.popup__image-title');
+const imgTitle = formElementImg.querySelector('.popup__img-title');
 const formElement = document.querySelectorAll('.popup');
 const nameInput = formElementEdit.querySelectorAll('.popup__input')[0];
 const jobInput = formElementEdit.querySelectorAll('.popup__input')[1];
@@ -94,17 +94,17 @@ function openImg(elem, elementLink, elementName) {
 //добавление элементов
 function addElement(elementName, elementLink) {
   let elementTemplate = document.querySelector('#element').content;
-  let elementElement = elementTemplate.querySelector('.element').cloneNode(true);
-  elementElement.querySelector('.element__title').textContent = elementName;
-  elementElement.querySelector('.element__img').setAttribute("src", elementLink);
+  let element = elementTemplate.querySelector('.element').cloneNode(true);
+  element.querySelector('.element__title').textContent = elementName;
+  element.querySelector('.element__img').setAttribute("src", elementLink);
 
-  addLike(elementElement);  //поставить/убрать лайк
+  addLike(element);  //поставить/убрать лайк
 
-  deleteCard(elementElement); //удалить карточку
+  deleteCard(element); //удалить карточку
 
-  openImg(elementElement, elementLink, elementName); //открыть карточку
+  openImg(element, elementLink, elementName); //открыть карточку
 
-  elements.prepend(elementElement); //добавить карточку
+  elements.prepend(element); //добавить карточку
 }
 
 //обработчики форм
@@ -121,10 +121,10 @@ function formSubmitHandlerAdd(evt) {
   closePopup();
 }
 
-editButton.addEventListener('click', openEditForm);
+editButton.addEventListener('click', openEditForm); //отслеживаем клик кнопки редактировать
 
-addButton.addEventListener('click', openAddForm);
-
+addButton.addEventListener('click', openAddForm); //отслеживаем клик кнопки добавить
+//закрыть попап
 for (let i = 0; i < formElement.length; i++) {
   closeButton[i].addEventListener('click', closePopup);
 };
