@@ -39,12 +39,12 @@
       <p class="footer__title"> &copy; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup__header">
+    <div class="popup popup_edit-profile">
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" name="popupForm">
-          <input class="popup__input" type="text" name="name" placeholder="Имя" minlength="2" maxlength="20" required>
-          <input class="popup__input" type="text" name="about" placeholder="Род деятельности" minlength="2"
+          <input class="popup__input popup__input_name" type="text" name="name" placeholder="Имя" minlength="2" maxlength="20" required>
+          <input class="popup__input popup__input_about" type="text" name="about" placeholder="Род деятельности" minlength="2"
             maxlength="30" required>
           <button class="popup__submit-button" type="submit">Сохранить</button>
         </form>
@@ -52,13 +52,13 @@
       </div>
     </div>
 
-    <div class="popup popup__card">
+    <div class="popup popup_add-card">
       <div class="popup__container">
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="popupForm">
-          <input class="popup__input" type="text" name="name" placeholder="Название" minlength="2" maxlength="20"
+          <input class="popup__input popup__input_title" type="text" name="name" placeholder="Название" minlength="2" maxlength="20"
             required>
-          <input class="popup__input" type="text" name="about" placeholder="Ссылка на картинку" minlength="2"
+          <input class="popup__input popup__input_link" type="text" name="link" placeholder="Ссылка на картинку" minlength="2"
             maxlength="300" required>
           <button class="popup__submit-button" type="submit">Создать</button>
         </form>
@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <div class="popup popup__image">
+  <div class="popup popup_open-image">
     <div class="popup__container popup__container-image">
       <img class="popup__img" src="#" alt="#">
       <h2 class="popup__img-title"></h2>
@@ -85,7 +85,7 @@
       <button class="element__delete-button" type="button"></button>
     </li>
   </template>
-
+  <script src="./utils/constants.js"></script>
   <script src="./pages/index.js"></script>
 </body>
 
