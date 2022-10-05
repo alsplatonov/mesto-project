@@ -53,43 +53,43 @@ function setListenerToToggleLikeCard(elem) {
 
 //удалить карточку
 function setListenerToDeleteCard(elem) {
-  const deleteButton = elem.querySelectorAll('.element__delete-button');
-  deleteButton[0].addEventListener('click', function () {
-    const listItem = deleteButton[0].closest('.element');
+  const deleteButton = elem.querySelector('.element__delete-button');
+  deleteButton.addEventListener('click', function () {
+    const listItem = deleteButton.closest('.element');
     listItem.remove();
   });
 }
 
 //Открыть картинку
-function setListenerToOpenImagePopup(elem, elementLink, elementName) {
-  const openImgButton = elem.querySelectorAll('.element__img');
-  openImgButton[0].addEventListener('click', function (evt) {
-    formElementImg.classList.add('popup_opened');
+function setListenerToOpenImagePopup(openImgButton, elementLink, elementName) {
+  openImgButton.addEventListener('click', function (evt) {
+    openPopup(formElementImg);
     imgSrc.setAttribute("src", elementLink);
     imgSrc.setAttribute("alt", `Изображение ${elementName}`);
     imgTitle.textContent = elementName;
   });
 }
 //Создать новую карточку
-function addCard(elementName, elementLink) {
+function createCard(elementName, elementLink) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   element.querySelector('.element__title').textContent = elementName;
-  element.querySelector('.element__img').setAttribute("src", elementLink);
-  element.querySelector('.element__img').setAttribute("alt", `Изображение ${elementName}`);
+
+  const elementImg = element.querySelector('.element__img');
+  elementImg.setAttribute("src", elementLink);
+  elementImg.setAttribute("alt", `Изображение ${elementName}`);
+
+  setListenerToToggleLikeCard(element);  //поставить/убрать лайк
+
+  setListenerToDeleteCard(element); //удалить карточку
+
+  setListenerToOpenImagePopup(elementImg, elementLink, elementName); //открыть карточку
 
   return element;
 }
 
 //добавление элементов
 function addElement(elementName, elementLink) {
-  let element = addCard(elementName, elementLink);
-
-  setListenerToToggleLikeCard(element);  //поставить/убрать лайк
-
-  setListenerToDeleteCard(element); //удалить карточку
-
-  setListenerToOpenImagePopup(element, elementLink, elementName); //открыть карточку
-
+  const element = createCard(elementName, elementLink);
   elements.prepend(element); //добавить карточку
 }
 
