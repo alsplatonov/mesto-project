@@ -6,20 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="pages/index.css">
+  <!-- <link rel="stylesheet" href="pages/index.css"> -->
 </head>
 
 <body>
   <div class="page">
     <header class="header page__defaults">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип Место">
     </header>
 
     <main class="container">
 
       <section class="profile page__defaults">
         <div class="profile__main">
-          <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
           <div class="profile__info">
             <div class="profile__summary">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -95,9 +95,9 @@
       <button class="element__delete-button" type="button"></button>
     </li>
   </template>
-  <script src="./utils/constants.js"></script>
+  <!-- <script src="./utils/constants.js"></script> -->
   <!-- <script src="./utils/validate.js"></script> -->
-  <script src="./pages/index.js"></script>
+  <!-- <script src="./pages/index.js"></script> -->
 
 
 
