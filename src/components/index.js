@@ -1,5 +1,3 @@
-
-
 import '../pages/index.css';
 import {
   initialCards
