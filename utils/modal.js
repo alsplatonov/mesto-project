@@ -20,6 +20,7 @@ function closePopupByEscButton(popup) {
     }
   })
 }
+
 // закрыть попап при клике на оверлей
 function closeByClickOnOverlay(popup) {
   document.addEventListener('click', (evt) => {
