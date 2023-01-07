@@ -44,11 +44,11 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form id="profilePopup" class="popup__form" name="popupForm" novalidate>
           <input id="profile-form__name" class="popup__input popup__input_name" type="text" name="name"
-            placeholder="Имя" minlength="2" maxlength="20" pattern="^[a-zA-Zа-яА-я\s\-]+$"
+            placeholder="Имя" minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-я\s\-]+$"
             data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
           <span class="profile-form__name-error form__input-error"></span>
           <input id="profile-form__job" class="popup__input popup__input_about" type="text" name="about"
-            placeholder="Род деятельности" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-я\s\-]+$"
+            placeholder="Род деятельности" minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-я\s\-]+$"
             data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
           <span class="profile-form__job-error form__input-error"></span>
           <button class="popup__submit-button" type="submit">Сохранить</button>
@@ -62,7 +62,7 @@
         <h3 class="popup__title">Новое место</h3>
         <form id="mestoPopup" class="popup__form" name="popupForm" novalidate>
           <input id="mesto-form__name" class="popup__input popup__input_title" type="text" name="name"
-            placeholder="Название" minlength="2" maxlength="20" pattern="^[a-zA-Zа-яА-я\s\-]+$"
+            placeholder="Название" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-я\s\-]+$"
             data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
           <span class="mesto-form__name-error form__input-error"></span>
           <input id="mesto-form__url" class="popup__input popup__input_link" type="text" name="link"
