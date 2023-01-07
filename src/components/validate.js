@@ -57,7 +57,6 @@ const setEventListeners = (formElement, validateSelectors) => {
   toggleButtonState(inputList, buttonElement, validateSelectors);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      // hideInputError(formElement, inputElement, validateSelectors);
       isValid(formElement, inputElement, validateSelectors);
       toggleButtonState(inputList, buttonElement, validateSelectors);
     });
@@ -72,14 +71,5 @@ const enableValidation = (validateSelectors) => {
   });
 };
 
-
-// enableValidation({
-//   formSelector: '.popup__form',
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__submit-button',
-//   inactiveButtonClass: 'popup__submit-button_inactive',
-//   inputErrorClass: 'popup__input_type_error',
-//   errorClass: 'popup__input-error_active'
-// });
 
 export {enableValidation};

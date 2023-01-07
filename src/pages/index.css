@@ -40,57 +40,18 @@
 @import url(../blocks/popup/__img/popup__img.css);
 @import url(../blocks/popup/__img-title/popup_img-title.css);
 @import url(../blocks/popup/__container/popup__container-image.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_error.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__submit-button/_inactive/popup__submit-button_inactive.css);
+@import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/__input-error/_active/form__input-error_active.css);
+
+
+
 
 
 
 /* * {
   box-shadow: 0 0 2px red;
 }   */
-
-
-
-.popup__input_type_error {
-  border-bottom: 1px solid #ff0000;
-}
-
-.popup__input-error {
-  display: block;
-  opacity: 0;
-  font-family: 'Inter';
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.21;
-  color: #ff0000;
-  margin: 5px 0 0;
-  height: 30px;
-  overflow: hidden;
-  transition: 0.5s;
-}
-
-.popup__input-error_active {
-  opacity: 1;
-}
-
-
-.form__input-error {
-  display: block;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-
-  color: #FF0000;
-  margin: 5px 0 0;
-  height: 30px;
-  overflow: hidden;
-  transition: 0.5s;
-}
-
-
-.popup__submit-button_inactive {
-  border: 1px solid #000;
-  background-color: #ffff;
-  color: #000;
-  opacity: 15%;
-}
