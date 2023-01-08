@@ -23,6 +23,7 @@ import {
   , profileTitle
   , profileSubtitle
   , elements
+  ,submitBtnMesto
 } from './constants.js';
 import { enableValidation } from './validate.js';
 import { openPopup, closePopup } from './modal.js';
@@ -40,6 +41,8 @@ function openAddForm() { //открыть форму добавления кар
   openPopup(formElementAdd);
   titleInput.value = '';
   linkInput.value = '';
+  submitBtnMesto.disabled = true;
+  submitBtnMesto.classList.add('popup__submit-button_inactive');
 }
 
 

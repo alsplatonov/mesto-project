@@ -49,6 +49,7 @@ const linkInput = formElementAdd.querySelector('.popup__input_link');
 const profileTitle = container.querySelector('.profile__title');
 const profileSubtitle = container.querySelector('.profile__subtitle');
 const elements = container.querySelector('.elements');
+const submitBtnMesto = document.querySelector('#submitButtonMesto');
 
 
 export {
@@ -75,4 +76,5 @@ export {
   , profileTitle
   , profileSubtitle
   , elements
+  ,submitBtnMesto
 };

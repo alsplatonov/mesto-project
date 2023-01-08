@@ -50,9 +50,9 @@
             placeholder="Род деятельности" minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-я\s\-]+$"
             data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
           <span class="profile-form__job-error form__input-error"></span>
-          <button class="popup__submit-button" type="submit">Сохранить</button>
+          <button id="submitButtonProfile" class="popup__submit-button" type="submit">Сохранить</button>
         </form>
-        <button id="submitButton" class="popup__close-button popup__close-button_profile" type="button"></button>
+        <button class="popup__close-button popup__close-button_profile" type="button"></button>
       </div>
     </div>
 
@@ -69,9 +69,9 @@
             pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
             data-error-message="Введите адрес сайта" required>
           <span class="mesto-form__url-error form__input-error"></span>
-          <button class="popup__submit-button" type="submit">Создать</button>
+          <button id="submitButtonMesto" class="popup__submit-button" type="submit">Создать</button>
         </form>
-        <button id="submitButton" class="popup__close-button popup__close-button_card" type="button"></button>
+        <button class="popup__close-button popup__close-button_card" type="button"></button>
       </div>
     </div>
   </div>
