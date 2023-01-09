@@ -23,8 +23,7 @@ function closePopupByEscButton(evt) {
 // закрыть попап при клике на оверлей
 function closeByClickOnOverlay(evt) {
   if (evt.target.classList.contains('popup')) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
+    closePopup(evt.target);
   };
 }
 
