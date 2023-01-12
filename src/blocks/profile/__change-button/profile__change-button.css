@@ -1,0 +1,18 @@
+.profile__change-button {
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  display: none;
+
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  background-image: url(../../../images/change-avatar.svg);
+  background-position: center;
+  background-size: 26px 26px;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  transition: opacity .3s ease-in;
+}

@@ -1,0 +1,9 @@
+.profile__picture{
+  position: relative;
+}
+
+.profile__picture:hover .profile__change-button{
+  display: block;
+  cursor: pointer;
+  opacity: .6;
+}

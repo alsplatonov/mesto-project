@@ -30,13 +30,17 @@ const initialCards = [
 const container = document.querySelector('.container');
 const btnOpenEditCardForm = container.querySelector('.profile__edit-button');
 const btnOpenAddCardForm = container.querySelector('.profile__add-button');
+const profileAvatar = container.querySelector('.profile__avatar');
+const btnOpenEditAvatar = container.querySelector('.profile__change-button');
 const buttonsForClosingPopup = document.querySelectorAll('.popup__close-button');
 const btnCloseEditCardForm = document.querySelector('.popup__close-button_profile');
+const btnCloseEditAvatar = document.querySelector('.popup__close-button_avatar');
 const btnCloseAddCardForm = document.querySelector('.popup__close-button_card');
 const btnCloseImgForm = document.querySelector('.popup__close-button_image');
 const elementTemplate = document.querySelector('#element').content;
 const popupImgButton = elementTemplate.querySelectorAll('.element__img');
 const formElementEdit = document.querySelector('.popup_edit-profile');
+const formAvatarEdit = document.querySelector('.popup_edit-avatar');
 const formElementAdd = document.querySelector('.popup_add-card');
 const formElementImg = document.querySelector('.popup_open-image');
 const imgSrc = formElementImg.querySelector('.popup__img');
@@ -46,24 +50,31 @@ const nameInput = formElementEdit.querySelector('.popup__input_name');
 const jobInput = formElementEdit.querySelector('.popup__input_about');
 const titleInput = formElementAdd.querySelector('.popup__input_title');
 const linkInput = formElementAdd.querySelector('.popup__input_link');
+const linkInputAvatar = formAvatarEdit.querySelector('.popup__input_link-avatar');
 const profileTitle = container.querySelector('.profile__title');
 const profileSubtitle = container.querySelector('.profile__subtitle');
 const elements = container.querySelector('.elements');
 const submitBtnMesto = document.querySelector('#submitButtonMesto');
+const submitBtnProfile = document.querySelector('#submitButtonProfile');
+const submitBtnAvatar = document.querySelector('#submitButtonAvatar');
 
 
 export {
   initialCards
   , container
+  , profileAvatar
   , btnOpenEditCardForm
+  , btnOpenEditAvatar
   , btnOpenAddCardForm
   , buttonsForClosingPopup
   , btnCloseEditCardForm
+  , btnCloseEditAvatar
   , btnCloseAddCardForm
   , btnCloseImgForm
   , elementTemplate
   , popupImgButton
   , formElementEdit
+  , formAvatarEdit
   , formElementAdd
   , formElementImg
   , imgSrc
@@ -73,8 +84,11 @@ export {
   , jobInput
   , titleInput
   , linkInput
+  , linkInputAvatar
   , profileTitle
   , profileSubtitle
   , elements
-  ,submitBtnMesto
+  , submitBtnMesto
+  , submitBtnProfile
+  , submitBtnAvatar
 };

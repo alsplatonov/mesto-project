@@ -13,10 +13,15 @@
   background-image: url(../../../images/trash.svg);
   background-repeat: no-repeat;
   background-position: center;
-  transition: opacity .3s ease;
+  transition: opacity .3s ease-in;
+  display: none;
 }
 
 .element__delete-button:hover {
   cursor: pointer;
-  opacity: 0.6;
+  opacity: .6;
+}
+
+.element__delete-button_activate {
+  display: block;
 }

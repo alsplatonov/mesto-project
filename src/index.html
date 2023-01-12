@@ -18,7 +18,10 @@
 
       <section class="profile page__defaults">
         <div class="profile__main">
-          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+          <div class="profile__picture">
+            <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+            <button class="profile__change-button" type="button" aria-label="Изменить аватар пользователя"></button>
+          </div>
           <div class="profile__info">
             <div class="profile__summary">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -64,14 +67,29 @@
             placeholder="Название" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-я\s\-]+$"
             data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
           <span class="mesto-form__name-error form__input-error"></span>
-          <input id="mesto-form__url" class="popup__input popup__input_link" type="text" name="link"
+          <!-- <input id="mesto-form__url" class="popup__input popup__input_link" type="text" name="link"
             placeholder="Ссылка на картинку"
             pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
-            data-error-message="Введите адрес сайта" required>
+            data-error-message="Введите адрес сайта" required> -->
+          <input id="mesto-form__url" class="popup__input popup__input_link" type="url" name="link"
+            placeholder="Ссылка на картинку" required>
           <span class="mesto-form__url-error form__input-error"></span>
           <button id="submitButtonMesto" class="popup__submit-button" type="submit">Создать</button>
         </form>
         <button class="popup__close-button popup__close-button_card" type="button"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_edit-avatar">
+      <div class="popup__container">
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form id="AvatarPopup" class="popup__form" name="popupForm" novalidate>
+          <input id="avatar-form__url" class="popup__input popup__input_link-avatar" type="url" name="link"
+            placeholder="Ссылка на картинку" required>
+          <span class="avatar-form__url-error form__input-error"></span>
+          <button id="submitButtonAvatar" class="popup__submit-button" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-button popup__close-button_avatar" type="button"></button>
       </div>
     </div>
   </div>
@@ -89,9 +107,12 @@
       <img class="element__img" src="#" alt="#">
       <div class="element__name">
         <h2 class="element__title"></h2>
-        <button class="element__like-button" type="button"></button>
+        <div class="element__like-button">
+          <button class="element__like-button" type="button"></button>
+          <p class="element__like-amount"></p>
+        </div>
       </div>
-      <button class="element__delete-button" type="button"></button>
+      <button class="element__delete-button element__delete-button_activate" type="button"></button>
     </li>
   </template>
 
