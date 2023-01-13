@@ -63,7 +63,6 @@ Promise.all([getUserInfo(), getInitialCards()])
     // console.log('me = ' + userInfo._id);
     initialCards.forEach(function (item) {
       elements.append(createCard(userInfo._id, item));
-      // elements.append(createCard(userInfo._id, item, hundleLikeCard));
     });
   })
   .catch((error) => { //обработка ошибок
@@ -127,28 +126,12 @@ function submitEditAvatarForm(evt) { //редактирование аватар
 }
 
 
-// function submitAddCardForm(evt) {  //добавление карточки
-//   evt.preventDefault();
-//   submitBtnMesto.textContent = 'Создание...';
-//   postCard(titleInput.value, linkInput.value)
-//     .then((newCard) => {
-//       elements.prepend(createCard(profileGlobal._id, newCard));
-//       closePopup(formElementAdd);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     })
-//     .finally(() => {
-//       submitBtnMesto.textContent = 'Создать';
-//     });
-// }
-
 function submitAddCardForm(evt) {  //добавление карточки
   evt.preventDefault();
   submitBtnMesto.textContent = 'Создание...';
   postCard(titleInput.value, linkInput.value)
     .then((newCard) => {
-      elements.prepend(createCard(profileGlobal._id, newCard, hundleLikeCard));
+      elements.prepend(createCard(profileGlobal._id, newCard));
       closePopup(formElementAdd);
     })
     .catch((error) => {
