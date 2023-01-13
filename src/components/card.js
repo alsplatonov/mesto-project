@@ -112,15 +112,15 @@ function checkStatusLike(evt) {
   return (evt.target.classList.contains('element__like-button_active'));
 }
 
-function changeLike(CardInfo, evt, likesAmount) {
-  if (!evt.target.classList.contains('element__like-button_active')) {
+
+function changeLike(CardInfo, evt, status, likesAmount) {
+  if (!status) {
     evt.target.classList.add('element__like-button_active')
   } else {
     evt.target.classList.remove('element__like-button_active')
   }
   likesAmount.textContent = CardInfo.likes.length;
 }
-
 
 
 //добавление элементов

@@ -162,14 +162,14 @@ function submitAddCardForm(evt) {  //добавление карточки
  function handleLikeCard(status, card_id, evt, likesAmount) {
   !status ? putLiketoCard(card_id)
     .then((res) => {
-      changeLike(res, evt, likesAmount)
+      changeLike(res, evt, status, likesAmount)
     })
     .catch((error) => {
       console.log(error);
     })
     : deleteLike(card_id)
       .then((res) => {
-        changeLike(res, evt, likesAmount)
+        changeLike(res, evt, status, likesAmount)
       })
       .catch((error) => {
         console.log(error);
