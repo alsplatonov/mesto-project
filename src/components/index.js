@@ -35,7 +35,7 @@ import {
 
 import { enableValidation } from './validate.js';
 import { openPopup, closePopup } from './modal.js';
-import { addElement, createCard } from './card.js';
+import { addElement, createCard, changeLike } from './card.js';
 
 import {
   getUserInfo
@@ -62,7 +62,8 @@ Promise.all([getUserInfo(), getInitialCards()])
     // загрузка карточек c сервера
     // console.log('me = ' + userInfo._id);
     initialCards.forEach(function (item) {
-      elements.prepend(createCard(userInfo, item));
+      elements.append(createCard(userInfo._id, item));
+      // elements.append(createCard(userInfo._id, item, hundleLikeCard));
     });
   })
   .catch((error) => { //обработка ошибок
@@ -92,15 +93,17 @@ function openAddForm() { //открыть форму добавления кар
 function submitEditProfileForm(evt) { //редактирование профиля
   evt.preventDefault();
   submitBtnProfile.textContent = 'Сохранение...';
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
   patchProfileInfo(nameInput.value, jobInput.value)
+    .then((newProfile) => {
+      profileTitle.textContent = newProfile.name;
+      profileSubtitle.textContent = newProfile.about;
+      closePopup(formElementEdit);
+    })
     .catch((error) => {
       console.log(error);
     })
     .finally(() => {
       submitBtnProfile.textContent = 'Сохранить';
-      closePopup(formElementEdit);
     });
 }
 
@@ -113,32 +116,77 @@ function submitEditAvatarForm(evt) { //редактирование аватар
     .then((newAvatar) => {
       profileAvatar.src = newAvatar.avatar;
       profileAvatar.alt = newAvatar.avatar;
+      closePopup(formAvatarEdit);
     })
     .catch((error) => {
       console.log(error);
     })
     .finally(() => {
       submitBtnAvatar.textContent = 'Сохранить';
-      closePopup(formAvatarEdit);
     });
 }
 
+
+// function submitAddCardForm(evt) {  //добавление карточки
+//   evt.preventDefault();
+//   submitBtnMesto.textContent = 'Создание...';
+//   postCard(titleInput.value, linkInput.value)
+//     .then((newCard) => {
+//       elements.prepend(createCard(profileGlobal._id, newCard));
+//       closePopup(formElementAdd);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     })
+//     .finally(() => {
+//       submitBtnMesto.textContent = 'Создать';
+//     });
+// }
 
 function submitAddCardForm(evt) {  //добавление карточки
   evt.preventDefault();
   submitBtnMesto.textContent = 'Создание...';
   postCard(titleInput.value, linkInput.value)
     .then((newCard) => {
-      elements.prepend(createCard(profileGlobal, newCard));
+      elements.prepend(createCard(profileGlobal._id, newCard, hundleLikeCard));
+      closePopup(formElementAdd);
     })
     .catch((error) => {
       console.log(error);
     })
     .finally(() => {
       submitBtnMesto.textContent = 'Создать';
-      closePopup(formElementAdd);
     });
 }
+
+ function handleLikeCard(status, card_id, evt, likesAmount) {
+  !status ? putLiketoCard(card_id)
+    .then((res) => {
+      changeLike(res, evt, likesAmount)
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    : deleteLike(card_id)
+      .then((res) => {
+        changeLike(res, evt, likesAmount)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+}
+
+function handleDeleteCard(card_id, deleteButton) {
+  deleteUserCard(card_id)
+    .then(() => {
+      const listItem = deleteButton.closest('.element');
+        listItem.remove();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+}
+
 
 btnOpenEditCardForm.addEventListener('click', openEditForm); //отслеживаем клик кнопки редактировать профиль
 
@@ -182,3 +230,6 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
 });
+
+
+export {handleLikeCard, handleDeleteCard};
