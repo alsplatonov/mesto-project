@@ -142,17 +142,17 @@ function submitAddCardForm(evt) {  //добавление карточки
     });
 }
 
- function handleLikeCard(status, card_id, evt, likesAmount) {
+function handleLikeCard(status, card_id, userid, cardItem) {
   !status ? putLiketoCard(card_id)
     .then((res) => {
-      changeLike(res, evt, status, likesAmount)
+      changeLike(res.likes, userid, cardItem);
     })
     .catch((error) => {
       console.log(error);
     })
     : deleteLike(card_id)
       .then((res) => {
-        changeLike(res, evt, status, likesAmount)
+        changeLike(res.likes, userid, cardItem);
       })
       .catch((error) => {
         console.log(error);
@@ -163,7 +163,7 @@ function handleDeleteCard(card_id, deleteButton) {
   deleteUserCard(card_id)
     .then(() => {
       const listItem = deleteButton.closest('.element');
-        listItem.remove();
+      listItem.remove();
     })
     .catch((error) => {
       console.log(error);
@@ -215,4 +215,4 @@ enableValidation({
 });
 
 
-export {handleLikeCard, handleDeleteCard};
+export { handleLikeCard, handleDeleteCard, profileGlobal };
