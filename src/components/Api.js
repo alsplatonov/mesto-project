@@ -1,7 +1,7 @@
 export default class Api {
   constructor({ baseUrl, headers }) {
-    this._baseUrl = baseUrl;
-    this._headers = headers;
+    this.#baseUrl = baseUrl;
+    this.#headers = headers;
   }
 
   //Загрузка информации о пользователе с сервера
