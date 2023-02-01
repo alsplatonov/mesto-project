@@ -1,20 +1,24 @@
 export default class Section {
+  #renderedItems;
+  #renderer;
+  #container;
   constructor({ renderer }, containerSelector) {
-    this.#renderedItems = items ;
+    // this.#renderedItems = items ;
     this.#renderer = renderer; //функция, которая отвечает за создание и отрисовку данных на странице
     
     this.#container = document.querySelector(containerSelector);
   }
 
-  renderItems(id) {
-    this.#renderedItems.forEach(item => this.#renderer(item, id))
+  renderItems() {
+    this.#renderedItems.forEach(item => this.#renderer(item, this._id))
   }
 
   addItem(element) {
     this.#container.append(element);
   }
 
-  setItem(items) {  //items изначально пуст
-		this._items = items;
+  setItem(items, id) {  //items изначально пуст
+		this.#renderedItems = items;
+    this._id = id;
 	}
 }

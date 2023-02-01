@@ -52,18 +52,17 @@ const api = new Api({
 function createNewCard(dataCard, userId) {
   const card = new Card(dataCard, '#element', userId, handleCardClick, handleLikeCard, handleDeleteCard);
   const newCard = card.createCard();
-
-  function handleLikeCard(status, userId) {
-    !status ? api.putLiketoCard(newCard.card_id)
+  function handleLikeCard(status, card) {
+    !status ? api.putLiketoCard(dataCard._id)
       .then((res) => {
-        card.changeLike(res.likes, userId);
+        card.changeLike(res.likes);
       })
       .catch((error) => {
         console.log(error);
       })
-      : api.deleteLike(newCard.card_id)
+      : api.deleteLike(dataCard._id)
         .then((res) => {
-          card.changeLike(res.likes, userId);
+          card.changeLike(res.likes);
         })
         .catch((error) => {
           console.log(error);
@@ -71,7 +70,7 @@ function createNewCard(dataCard, userId) {
   }
 
   function handleDeleteCard() {
-    api.deleteUserCard(newCard.card_id)
+    api.deleteUserCard(dataCard._id)
       .then(() => {
         // const listItem = deleteButton.closest('.element');
         // listItem.remove();
@@ -82,21 +81,22 @@ function createNewCard(dataCard, userId) {
       })
   }
 
+
   return newCard;
 }
 // const card = new Card(cardData, '#element', handleCardClick, handleLikeCard, handleDeleteCard);
 
 const cardSection = new Section({
-  renderer: (item) => {
+  renderer: (item, id) => {
     // const card = api.createCard(item)
     cardSection.addItem(createNewCard(item, id));
   }
-}, elements);
+}, '.elements');
 
 
-const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', api.patchProfileInfo.bind(api));
-const popupAddCardInstance = new PopupWithForm('.popup_add-card', api.postCard.bind(api));
-const popupWithImageInstance = new PopupWithImage('.popup_open-image');
+// const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', api.patchProfileInfo.bind(api));
+// const popupAddCardInstance = new PopupWithForm('.popup_add-card', api.postCard.bind(api));
+// const popupWithImageInstance = new PopupWithImage('.popup_open-image');
 const UserInfoInstance = new UserInfo({
   nameElementSelector: '.profile__title',
   descElementSelector: '.profile__subtitle',
@@ -110,40 +110,24 @@ Promise.all([UserInfoInstance.getUserInfo(), api.getInitialCards()])
     profileTitle.textContent = userInfo.name;
     profileSubtitle.textContent = userInfo.about;
     profileAvatar.src = userInfo.avatar;
-
+    console.log(userInfo._id);
+    console.log(initialCards);
     // загрузка карточек c сервера
-    cardSection.setItem(initialCards);
+    cardSection.setItem(initialCards, userInfo._id);
     cardSection.renderItems();
   })
   .catch((error) => { //обработка ошибок
     console.log(error);
   })
 
-function handleLikeCard(status, card_id, userid) {
-  !status ? putLiketoCard(card_id)
-    .then((res) => {
-      changeLike(res.likes, userid);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    : deleteLike(card_id)
-      .then((res) => {
-        changeLike(res.likes, userid);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-}
+  
 
-function handleDeleteCard(card_id) {
-  deleteUserCard(card_id)
-    .then(() => {
-      const listItem = deleteButton.closest('.element');
-      listItem.remove();
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-}
+  // 3 попап - Раскрытие картинки на весь экран:
+  const popupWithImageInstance = new PopupWithImage('.popup_open-image');
+popupWithImageInstance.setEventListeners();
+
+function handleCardClick(name, link) {
+	popupWithImageInstance.openPopup({src: link, alt: name});
+  
+};
 
