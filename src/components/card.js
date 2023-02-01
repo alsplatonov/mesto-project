@@ -1,18 +1,21 @@
 export default class Card {
-  constructor(cardData, templateCardSelector, handleLikeCard, handleDeleteCard, handleCardClick) {
+  constructor(cardData, templateCardSelector, userId, handleLikeCard, handleDeleteCard, handleCardClick) {
     this.#name = cardData.name;
     this.#imageLink = cardData.imageLink;
     this.#template = document.querySelector(templateCardSelector);
     this.#likes = cardData.likes;
-    this.#userId = cardData.userId;
-    this.#cardId = cardData.id;
+    // this.#userId = cardData.userId;
+    this.#cardId = cardData._id;
     this.#ownerId = cardData.owner._id;
     this.#handleLikeCard = handleLikeCard;
     this.#handleDeleteCard = handleDeleteCard;
     this.#handleCardClick = handleCardClick;
+
+    this.#userId = userId;
+
   }
 
- 
+
   createCard() {
     const card = this.#template.content.querySelector('.element').cloneNode(true);
 
@@ -35,7 +38,7 @@ export default class Card {
 
     this.#setCardEventListeners();
 
-    return this.#card; 
+    return this.#card;
   }
 
 

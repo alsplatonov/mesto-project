@@ -1,14 +1,14 @@
-import {
-  initialCards
-  , elementTemplate
-  , formElementImg
-  , imgSrc
-  , imgTitle
-  , elements
-} from './constants.js';
-import { openPopup } from './modal.js';
+// import {
+//   initialCards
+//   , elementTemplate
+//   , formElementImg
+//   , imgSrc
+//   , imgTitle
+//   , elements
+// } from './constants.js';
+// import { openPopup } from './modal.js';
 
-import { handleLikeCard, handleDeleteCard } from './index.js';
+// import { handleLikeCard, handleDeleteCard } from './index.js';
 
 
 function checkStatusLike(cardItem) {
