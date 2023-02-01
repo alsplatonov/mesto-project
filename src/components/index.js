@@ -216,3 +216,25 @@ enableValidation({
 
 
 export { handleLikeCard, handleDeleteCard, profileGlobal };
+
+import PopupWithImage from "./PopupWithImage";
+import PopupWithForm from "./PopupWithForm";
+import UserInfo from "./UserInfo";
+import Api from "./Api";
+
+const api = new Api({
+  headers: 'test',
+  baseUrl: 'test',
+})
+
+const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', api.patchProfileInfo.bind(api));
+const popupAddCardInstance = new PopupWithForm('.popup_add-card', api.postCard.bind(api));
+const popupWithImageInstance = new PopupWithImage('.popup_open-image');
+const UserInfoInstance = new UserInfo({
+  nameElementSelector: '.profile__title',
+  descElementSelector: '.profile__subtitle',
+}, api.getUserInfo.bind(api), api.patchProfileInfo.bind(api));
+
+popupEditProfileInstance.setEventListeners();
+popupAddCardInstance.setEventListeners();
+popupWithImageInstance.setEventListeners();
