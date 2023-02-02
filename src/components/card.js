@@ -1,12 +1,4 @@
-import { openPopup } from './modal.js';
-import {
-  initialCards
-  , elementTemplate
-  , formElementImg
-  , imgSrc
-  , imgTitle
-  , elements
-} from './constants.js';
+
 
 export default class Card {
   #name;
@@ -76,6 +68,7 @@ export default class Card {
 
   #checkStatusLike() {
     const likeCard = this._card.querySelector('.element__like-button');
+    console.log(likeCard.classList.contains('element__like-button_active'));
     return (likeCard.classList.contains('element__like-button_active'));
   }
 
