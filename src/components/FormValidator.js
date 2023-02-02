@@ -81,6 +81,18 @@ export default class FormValidator {
   };
 
 
+    //сброс валидации формы
+    reset() {
+      const form = this.#formElement.querySelector('.popup__form');
+      const inputList = Array.from(form.querySelectorAll(this.#inputSelector));
+      const buttonElement = form.querySelector(this.#submitButtonSelector);
+      this.#toggleButtonState(inputList, buttonElement);
+  
+      inputList.forEach((inputElement) => {
+        this.#hideInputError(inputElement);
+      });
+    }
+
   enableValidation() { //Для каждой проверяемой формы будем создавать свой экземпляр класса FormValidator
     this.#setEventListeners();
   }

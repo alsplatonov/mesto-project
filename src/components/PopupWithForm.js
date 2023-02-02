@@ -21,6 +21,7 @@ export default class PopupWithForm extends Popup {
 
   openPopup() {
     super.openPopup();
+    
     this.initialValues = this._getInputValues()
   }
 

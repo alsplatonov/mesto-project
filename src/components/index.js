@@ -101,16 +101,19 @@ popupAddCardInstance.setEventListeners();
 
 btnOpenEditCardForm.addEventListener('click', () => { //отслеживаем клик кнопки редактировать профиль
   popupEditProfileInstance.openPopup();
+  profileValidator.reset();
 });
 
 
 btnOpenEditAvatar.addEventListener('click', () => { //отслеживаем клик кнопки редактировать аватар
   popupEditAvatarInstance.openPopup();
+  avatarValidator.reset();
 });
 
 
-btnOpenAddCardForm.addEventListener('click', () => { //отслеживаем клик кнопки добавить
+btnOpenAddCardForm.addEventListener('click', () => { //отслеживаем клик кнопки добавить карту
   popupAddCardInstance.openPopup();
+  addCardValidator.reset();
 });
 
 
@@ -143,9 +146,7 @@ function PopupChangeAvatar(avatar) {
 // функция редактирования профиля пользователя 
 function PopupPatchProfile(profileData) {
   submitBtnProfile.textContent = 'Сохранение...';
-  // console.log(profileData);
   api.patchProfileInfo(profileData)
-    // api.patchProfileInfo({ name: profileData.name, job: profileData.job })
     .then((data) => {
       console.log(data);
       UserInfoInstance.setUserInfo(data);
