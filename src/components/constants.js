@@ -57,6 +57,14 @@ const elements = container.querySelector('.elements');
 const submitBtnMesto = document.querySelector('#submitButtonMesto');
 const submitBtnProfile = document.querySelector('#submitButtonProfile');
 const submitBtnAvatar = document.querySelector('#submitButtonAvatar');
+const validateSelectors = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
 
 
 export {
@@ -91,4 +99,5 @@ export {
   , submitBtnMesto
   , submitBtnProfile
   , submitBtnAvatar
+  ,validateSelectors
 };

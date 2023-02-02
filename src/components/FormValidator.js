@@ -1,4 +1,10 @@
 export default class FormValidator {
+  #inputSelector;
+  #submitButtonSelector;
+  #inactiveButtonClass;
+  #inputErrorClass;
+  #errorClass;
+  #formElement;
   constructor(validateSelectors, formElement) {
     //this.#formSelector = validateSelectors.formSelector;
     this.#inputSelector = validateSelectors.inputSelector;
@@ -8,6 +14,7 @@ export default class FormValidator {
     this.#errorClass = validateSelectors.errorClass;
 
     this.#formElement = document.querySelector(formElement);
+    //  this.#formElement = formElement;
   }
 
   #showInputError(inputElement, errorMessage) {

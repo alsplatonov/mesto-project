@@ -1,5 +1,5 @@
 //открыть попап
-function openPopup(popup) {
+function openPopup2(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener('keydown', closePopupByEscButton);
   document.addEventListener('click', closeByClickOnOverlay);
@@ -27,4 +27,4 @@ function closeByClickOnOverlay(evt) {
   };
 }
 
-export { openPopup, closePopup };
+export { openPopup2, closePopup };
