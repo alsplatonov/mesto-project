@@ -174,3 +174,5 @@ function PopupAddCard(cardData) {
       submitBtnMesto.textContent = 'Создать';
     })
 }
+
+//
