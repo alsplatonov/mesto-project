@@ -17,6 +17,8 @@ export default class PopupWithImage extends Popup {
     this.image.setAttribute("src", src);
     this.image.setAttribute("alt", `Изображение ${alt}`);
     this.imageTitle.textContent = alt;
+    console.log(this.image);
+  
   }
 
 }

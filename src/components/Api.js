@@ -35,13 +35,15 @@ export default class Api {
   }
 
   //Редактирование профиля
-  patchProfileInfo({ name, job }) {
+  patchProfileInfo({ name, about }) {
+    console.log(about);
     return fetch(`${this.#baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this.#headers,
       body: JSON.stringify({
+
         name: name,
-        job: job
+        about: about
       })
     })
       .then(res => {

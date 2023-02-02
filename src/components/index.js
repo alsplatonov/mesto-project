@@ -116,7 +116,7 @@ Promise.all([UserInfoInstance.getUserInfo(), api.getInitialCards()])
 const popupWithImageInstance = new PopupWithImage('.popup_open-image');
 popupWithImageInstance.setEventListeners();
 
-function handleCardClick(name, link) {
+function handleCardClick(link, name) {
   popupWithImageInstance.openPopup({ src: link, alt: name });
 };
 
@@ -124,13 +124,16 @@ function handleCardClick(name, link) {
 const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', PopupPatchProfile);
 popupEditProfileInstance.setEventListeners();
 
+const popupEditAvatarInstance = new PopupWithForm('.popup_edit-avatar', PopupChangeAvatar);
+popupEditAvatarInstance.setEventListeners();
+
 const popupAddCardInstance = new PopupWithForm('.popup_add-card', PopupAddCard);
 popupAddCardInstance.setEventListeners();
 
 
 
 
-popupWithImageInstance.setEventListeners();
+
 
 
 btnOpenEditCardForm.addEventListener('click', () => { //отслеживаем клик кнопки редактировать профиль
@@ -138,12 +141,9 @@ btnOpenEditCardForm.addEventListener('click', () => { //отслеживаем �
 });
 
 
-
-
-
-//  btnOpenEditAvatar.addEventListener('click', () => { //отслеживаем клик кнопки редактировать аватар
-//   popupEditProfileInstance.openPopup();
-
+btnOpenEditAvatar.addEventListener('click', () => { //отслеживаем клик кнопки редактировать аватар
+  popupEditAvatarInstance.openPopup();
+});
 
 
 
@@ -169,8 +169,8 @@ function PopupChangeAvatar(avatar) {
 
   api.changeUserAvatar(avatar)
     .then((data) => {
-      UserInfoInstance.setUserInfo(data);
-      popupEditProfileInstance.closePopup();
+      UserInfoInstance.setUserInfo(data.avatar);
+      popupEditAvatarInstance.closePopup();
     })
     .catch((err) => {
       console.log(err);
@@ -180,24 +180,22 @@ function PopupChangeAvatar(avatar) {
     })
 }
 
-// функция редактирования аватара пользователя 
+// функция редактирования профиля пользователя 
 function PopupPatchProfile(profileData) {
-  btnOpenEditCardForm.textContent = 'Сохранение...';
-
+  submitBtnProfile.textContent = 'Сохранение...';
+  // console.log(profileData);
   api.patchProfileInfo(profileData)
+    // api.patchProfileInfo({ name: profileData.name, job: profileData.job })
     .then((data) => {
+      console.log(data);
       UserInfoInstance.setUserInfo(data);
-      // console.log(data.name);
-
-      // profileTitle.textContent = data.name;
-      // profileSubtitle.textContent = data.about;
       popupEditProfileInstance.closePopup();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      submitBtnAvatar.textContent = 'Сохранить';
+      submitBtnProfile.textContent = 'Сохранить';
     })
 }
 
