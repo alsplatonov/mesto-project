@@ -9,7 +9,7 @@ import {
   , validateSelectors
   , baseUrl
   , headers
-} from './constants.js';
+} from '../utils/constants.js';
 
 import Card from "../components/card.js";
 import Section from "../components/Section.js";
@@ -148,7 +148,6 @@ function PopupPatchProfile(profileData) {
   submitBtnProfile.textContent = 'Сохранение...';
   api.patchProfileInfo(profileData)
     .then((data) => {
-      console.log(data);
       UserInfoInstance.setUserInfo(data);
       popupEditProfileInstance.closePopup();
     })
