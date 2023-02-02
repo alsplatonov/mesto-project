@@ -1,4 +1,3 @@
-import {closePopup} from "./modal";
 
 export default class Popup {
   constructor(popupSelector) {
@@ -29,7 +28,7 @@ export default class Popup {
 
   _handleOverlayClose(evt) {
     if (evt.target.classList.contains('popup')) {
-      closePopup(evt.target);
+      this.closePopup(evt.target);
     }
   }
 }
