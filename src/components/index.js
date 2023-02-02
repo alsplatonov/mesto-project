@@ -1,37 +1,14 @@
 import '../pages/index.css';
 import {
-  initialCards
-  , container
-  , btnOpenEditCardForm
+  btnOpenEditCardForm
   , btnOpenEditAvatar
   , btnOpenAddCardForm
-  , profileAvatar
-  , buttonsForClosingPopup
-  , btnCloseEditCardForm
-  , btnCloseEditAvatar
-  , btnCloseAddCardForm
-  , btnCloseImgForm
-  , elementTemplate
-  , popupImgButton
-  , formElementEdit
-  , formAvatarEdit
-  , formElementAdd
-  , formElementImg
-  , imgSrc
-  , imgTitle
-  , formElements
-  , nameInput
-  , jobInput
-  , titleInput
-  , linkInput
-  , linkInputAvatar
-  , profileTitle
-  , profileSubtitle
-  , elements
   , submitBtnMesto
   , submitBtnProfile
   , submitBtnAvatar
   , validateSelectors
+  , baseUrl
+  , headers
 } from './constants.js';
 
 import Card from "../components/card.js";
@@ -42,20 +19,14 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import FormValidator from "../components/FormValidator.js";
 
-const api = new Api({
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-17',
-  headers: {
-    // authorization: '1d4e0d9e-039a-449f-a329-44ee6b357555',
-    authorization: 'd23797db-84d4-4701-b645-1174990f5c2b',
-    'Content-Type': 'application/json'
-  }
-})
+
+const api = new Api({ baseUrl, headers });
 
 // функция создания карточек
 function createNewCard(dataCard, userId) {
   const card = new Card(dataCard, '#element', userId, handleCardClick, handleLikeCard, handleDeleteCard);
   const newCard = card.createCard();
-  function handleLikeCard(status, card) {
+  function handleLikeCard(status, card) { //проставка/снятие лайка
     !status ? api.putLiketoCard(dataCard._id)
       .then((res) => {
         card.changeLike(res.likes);
@@ -72,7 +43,7 @@ function createNewCard(dataCard, userId) {
         })
   }
 
-  function handleDeleteCard() {
+  function handleDeleteCard() {  //удаление карточки
     api.deleteUserCard(dataCard._id)
       .then(() => {
         newCard.remove();
@@ -91,12 +62,11 @@ const cardSection = new Section({
 }, '.elements');
 
 
-
 const UserInfoInstance = new UserInfo({
   nameElementSelector: '.profile__title',
   descElementSelector: '.profile__subtitle',
   avatarElementSelector: '.profile__avatar'
-}, api.getUserInfo.bind(api), api.patchProfileInfo.bind(api));
+}, api.getUserInfo.bind(api));
 
 Promise.all([UserInfoInstance.getUserInfo(), api.getInitialCards()])
   .then(([userInfo, initialCards]) => {
@@ -109,8 +79,6 @@ Promise.all([UserInfoInstance.getUserInfo(), api.getInitialCards()])
   .catch((error) => { //обработка ошибок
     console.log(error);
   })
-
-
 
 // Раскрытие картинки на весь экран
 const popupWithImageInstance = new PopupWithImage('.popup_open-image');
@@ -131,11 +99,6 @@ const popupAddCardInstance = new PopupWithForm('.popup_add-card', PopupAddCard);
 popupAddCardInstance.setEventListeners();
 
 
-
-
-
-
-
 btnOpenEditCardForm.addEventListener('click', () => { //отслеживаем клик кнопки редактировать профиль
   popupEditProfileInstance.openPopup();
 });
@@ -146,27 +109,24 @@ btnOpenEditAvatar.addEventListener('click', () => { //отслеживаем к�
 });
 
 
-
 btnOpenAddCardForm.addEventListener('click', () => { //отслеживаем клик кнопки добавить
   popupAddCardInstance.openPopup();
 });
 
 
-
-const profileValidator = new FormValidator(validateSelectors, '.popup_edit-profile');
+const profileValidator = new FormValidator(validateSelectors, '.popup_edit-profile'); //валидация формы редактирования профиля
 profileValidator.enableValidation();
 
-const avatarValidator = new FormValidator(validateSelectors, '.popup_edit-avatar');
+const avatarValidator = new FormValidator(validateSelectors, '.popup_edit-avatar'); //валидация формы редактирования аватара
 avatarValidator.enableValidation();
 
-const addCardValidator = new FormValidator(validateSelectors, '.popup_add-card');
+const addCardValidator = new FormValidator(validateSelectors, '.popup_add-card'); //валидация формы добавления карточки
 addCardValidator.enableValidation();
 
 
 // функция редактирования аватара пользователя 
 function PopupChangeAvatar(avatar) {
   submitBtnAvatar.textContent = 'Сохранение...';
-
   api.changeUserAvatar(avatar)
     .then((data) => {
       UserInfoInstance.setUserInfo(data.avatar);
@@ -198,7 +158,6 @@ function PopupPatchProfile(profileData) {
       submitBtnProfile.textContent = 'Сохранить';
     })
 }
-
 
 // функция добавления новых карточек от пользователя 
 function PopupAddCard(cardData) {

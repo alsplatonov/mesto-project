@@ -7,7 +7,6 @@ export default class PopupWithForm extends Popup {
     this.formHandler = formHandler;
     this.form = this.popup.querySelector('.popup__form');
     this._inputList = this.form.querySelectorAll('.popup__input');
-
     this.initialValues = null;
   }
 
@@ -22,13 +21,11 @@ export default class PopupWithForm extends Popup {
 
   openPopup() {
     super.openPopup();
-
     this.initialValues = this._getInputValues()
   }
 
   closePopup() {
     super.closePopup();
-
     this._inputList.forEach(input => input.value = this.initialValues[input.name])
   }
 

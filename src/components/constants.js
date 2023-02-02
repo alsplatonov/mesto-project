@@ -65,6 +65,11 @@ const validateSelectors = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
 };
+  const baseUrl = 'https://nomoreparties.co/v1/plus-cohort-17';
+  const headers = {
+    authorization: 'd23797db-84d4-4701-b645-1174990f5c2b',
+    'Content-Type': 'application/json'
+  }
 
 
 export {
@@ -100,4 +105,6 @@ export {
   , submitBtnProfile
   , submitBtnAvatar
   ,validateSelectors
+  ,baseUrl
+  ,headers
 };
