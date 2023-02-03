@@ -136,9 +136,9 @@ addCardValidator.enableValidation();
 // функция редактирования аватара пользователя 
 function handleAvatarFormSubmit(avatar) {
   submitBtnAvatar.textContent = 'Сохранение...';
-  api.changeUserAvatar(avatar)
+  api.changeUserAvatar(avatar.link)
     .then((data) => {
-      userInfoInstance.setUserInfo(data.avatar);
+      userInfoInstance.setUserInfo(data);
       popupEditAvatarInstance.closePopup();
     })
     .catch((err) => {
