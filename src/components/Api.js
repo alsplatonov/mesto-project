@@ -83,7 +83,7 @@ export default class Api {
       method: 'PATCH',
       headers: this.#headers,
       body: JSON.stringify({
-        avatar: avatar
+        avatar: avatar.link
       }),
     })
       .then(this.#checkResponse);
@@ -95,6 +95,4 @@ export default class Api {
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
-
-
 }

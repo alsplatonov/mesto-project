@@ -12,6 +12,8 @@ import {
   , formElementEdit
   , formAvatarEdit
   , formElementAdd
+  , profileTitle
+  , profileSubtitle
   ,nameInput
   ,jobInput
 } from '../utils/constants.js';
@@ -94,7 +96,7 @@ function handleCardClick(link, name) {
 };
 
 
-const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', handleProfileFormSubmit);
+const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', handleProfileFormSubmit, true);
 popupEditProfileInstance.setEventListeners();
 
 const popupEditAvatarInstance = new PopupWithForm('.popup_edit-avatar', handleAvatarFormSubmit);
@@ -105,10 +107,11 @@ popupAddCardInstance.setEventListeners();
 
 
 btnOpenEditCardForm.addEventListener('click', () => { //отслеживаем клик кнопки редактировать профиль
-  const {name, about} =  userInfoInstance.getUserInfo();
-  nameInput.value = name;
-  jobInput.value = about;
-  popupEditProfileInstance.openPopup();
+  userInfoInstance
+      .getUserInfo()
+      .then(result => {
+        popupEditProfileInstance.openPopup(result);
+      })
   profileValidator.resetValidation();
 });
 
@@ -136,7 +139,7 @@ addCardValidator.enableValidation();
 // функция редактирования аватара пользователя 
 function handleAvatarFormSubmit(avatar) {
   submitBtnAvatar.textContent = 'Сохранение...';
-  api.changeUserAvatar(avatar.link)
+  api.changeUserAvatar(avatar)
     .then((data) => {
       userInfoInstance.setUserInfo(data);
       popupEditAvatarInstance.closePopup();
@@ -180,5 +183,3 @@ function handleCardFormSubmit(cardData) {
       submitBtnMesto.textContent = 'Создать';
     })
 }
-
-//
