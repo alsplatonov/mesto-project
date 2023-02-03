@@ -12,8 +12,6 @@ import {
   , formElementEdit
   , formAvatarEdit
   , formElementAdd
-  ,nameInput
-  ,jobInput
 } from '../utils/constants.js';
 
 import Card from "../components/Card.js";
@@ -67,16 +65,16 @@ const cardSection = new Section({
 }, '.elements');
 
 
-const userInfoInstance = new UserInfo({
+const UserInfoInstance = new UserInfo({
   nameElementSelector: '.profile__title',
   descElementSelector: '.profile__subtitle',
   avatarElementSelector: '.profile__avatar'
 }, api.getUserInfo.bind(api));
 
-Promise.all([userInfoInstance.getUserInfo(), api.getInitialCards()])
+Promise.all([UserInfoInstance.getUserInfo(), api.getInitialCards()])
   .then(([userInfo, initialCards]) => {
     // загрузка инфо о пользователе с сервера 
-    userInfoInstance.setUserInfo(userInfo);
+    UserInfoInstance.setUserInfo(userInfo);
     // загрузка карточек c сервера
     cardSection.setItem(initialCards, userInfo._id);
     cardSection.renderItems();
@@ -94,20 +92,17 @@ function handleCardClick(link, name) {
 };
 
 
-const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', handleProfileFormSubmit);
+const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', PopupPatchProfile);
 popupEditProfileInstance.setEventListeners();
 
-const popupEditAvatarInstance = new PopupWithForm('.popup_edit-avatar', handleAvatarFormSubmit);
+const popupEditAvatarInstance = new PopupWithForm('.popup_edit-avatar', PopupChangeAvatar);
 popupEditAvatarInstance.setEventListeners();
 
-const popupAddCardInstance = new PopupWithForm('.popup_add-card', handleCardFormSubmit);
+const popupAddCardInstance = new PopupWithForm('.popup_add-card', PopupAddCard);
 popupAddCardInstance.setEventListeners();
 
 
 btnOpenEditCardForm.addEventListener('click', () => { //отслеживаем клик кнопки редактировать профиль
-  const {name, about} =  userInfoInstance.getUserInfo();
-  nameInput.value = name;
-  jobInput.value = about;
   popupEditProfileInstance.openPopup();
   profileValidator.resetValidation();
 });
@@ -134,11 +129,11 @@ addCardValidator.enableValidation();
 
 
 // функция редактирования аватара пользователя 
-function handleAvatarFormSubmit(avatar) {
+function PopupChangeAvatar(avatar) {
   submitBtnAvatar.textContent = 'Сохранение...';
   api.changeUserAvatar(avatar)
     .then((data) => {
-      userInfoInstance.setUserInfo(data.avatar);
+      UserInfoInstance.setUserInfo(data.avatar);
       popupEditAvatarInstance.closePopup();
     })
     .catch((err) => {
@@ -150,11 +145,11 @@ function handleAvatarFormSubmit(avatar) {
 }
 
 // функция редактирования профиля пользователя 
-function handleProfileFormSubmit(profileData) {
+function PopupPatchProfile(profileData) {
   submitBtnProfile.textContent = 'Сохранение...';
   api.patchProfileInfo(profileData)
     .then((data) => {
-      userInfoInstance.setUserInfo(data);
+      UserInfoInstance.setUserInfo(data);
       popupEditProfileInstance.closePopup();
     })
     .catch((err) => {
@@ -166,7 +161,7 @@ function handleProfileFormSubmit(profileData) {
 }
 
 // функция добавления новых карточек от пользователя 
-function handleCardFormSubmit(cardData) {
+function PopupAddCard(cardData) {
   submitBtnMesto.textContent = 'Создание...';
   api.postCard(cardData)
     .then((data) => {
