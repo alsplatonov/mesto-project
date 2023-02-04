@@ -75,7 +75,7 @@ const userInfoInstance = new UserInfo({
   avatarElementSelector: '.profile__avatar'
 }, api.getUserInfo.bind(api));
 
-Promise.all([userInfoInstance.getUserInfo(), api.getInitialCards()])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userInfo, initialCards]) => {
     // загрузка инфо о пользователе с сервера 
     userInfoInstance.setUserInfo(userInfo);
@@ -96,7 +96,7 @@ function handleCardClick(link, name) {
 };
 
 
-const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', handleProfileFormSubmit, true);
+ const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', handleProfileFormSubmit, true);
 popupEditProfileInstance.setEventListeners();
 
 const popupEditAvatarInstance = new PopupWithForm('.popup_edit-avatar', handleAvatarFormSubmit);
