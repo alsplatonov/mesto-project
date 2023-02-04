@@ -4,9 +4,9 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, formHandler, profilePopup) {
     super(popupSelector);
 
-    this.formHandler = formHandler;
-    this.form = this.popup.querySelector('.popup__form');
-    this._inputList = this.form.querySelectorAll('.popup__input');
+    this._formHandler = formHandler;
+    this._form = this._popup.querySelector('.popup__form');
+    this._inputList = this._form.querySelectorAll('.popup__input');
     this._profilePopup = profilePopup
     this._profileData = null;
   }
@@ -15,20 +15,15 @@ export default class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    this.form.addEventListener('submit', (evt) => {
+    this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this.formHandler(this._getInputValues());
+      this._formHandler(this._getInputValues());
     });
   }
 
   openPopup(profileData) {
     super.openPopup();
-
-    if (this._profilePopup) {
-      this._profileData = profileData
-
-      this._inputList.forEach(input => input.value = this._profileData[input.name])
-    }
+    this._form.reset();
   }
 
   closePopup() {

@@ -11,7 +11,10 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    return this.#getProfileInfo()
+    return {
+      name:this.#nameElement.textContent,
+      about:this.#descElement.textContent
+    }
   }
 
   setUserInfo(userData) {
