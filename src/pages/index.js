@@ -107,11 +107,8 @@ popupAddCardInstance.setEventListeners();
 
 
 btnOpenEditCardForm.addEventListener('click', () => { //отслеживаем клик кнопки редактировать профиль
-  userInfoInstance
-      .getUserInfo()
-      .then(result => {
-        popupEditProfileInstance.openPopup(result);
-      })
+  popupEditProfileInstance.setInputValues(userInfoInstance.getUserInfo());
+  popupEditProfileInstance.openPopup();
   profileValidator.resetValidation();
 });
 

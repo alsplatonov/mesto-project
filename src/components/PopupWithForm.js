@@ -1,14 +1,11 @@
 import Popup from "./Popup";
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, formHandler, profilePopup) {
+  constructor(popupSelector, formHandler) {
     super(popupSelector);
-
     this._formHandler = formHandler;
     this._form = this._popup.querySelector('.popup__form');
     this._inputList = this._form.querySelectorAll('.popup__input');
-    this._profilePopup = profilePopup
-    this._profileData = null;
   }
 
 
@@ -21,19 +18,13 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  openPopup(profileData) {
-    super.openPopup();
+  closePopup() {
+    super.closePopup();
     this._form.reset();
   }
 
-  closePopup() {
-    super.closePopup();
-
-    if (this._profilePopup) {
-      this._inputList.forEach(input => input.value = this._profileData[input.name])
-    } else {
-      this._reset()
-    }
+  setInputValues(data) {
+    this._inputList.forEach(input => input.value = data[input.name])
   }
 
   _getInputValues() {
@@ -44,9 +35,5 @@ export default class PopupWithForm extends Popup {
     });
 
     return this._formValues;
-  }
-
-  _reset() {
-    this._inputList.forEach(input => input.value = '')
   }
 }
