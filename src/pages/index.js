@@ -9,9 +9,16 @@ import {
   , validateSelectors
   , baseUrl
   , headers
+  , formElementEdit
+  , formAvatarEdit
+  , formElementAdd
+  , profileTitle
+  , profileSubtitle
+  ,nameInput
+  ,jobInput
 } from '../utils/constants.js';
 
-import Card from "../components/card.js";
+import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -62,16 +69,16 @@ const cardSection = new Section({
 }, '.elements');
 
 
-const UserInfoInstance = new UserInfo({
+const userInfoInstance = new UserInfo({
   nameElementSelector: '.profile__title',
   descElementSelector: '.profile__subtitle',
   avatarElementSelector: '.profile__avatar'
 }, api.getUserInfo.bind(api));
 
-Promise.all([UserInfoInstance.getUserInfo(), api.getInitialCards()])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userInfo, initialCards]) => {
     // загрузка инфо о пользователе с сервера 
-    UserInfoInstance.setUserInfo(userInfo);
+    userInfoInstance.setUserInfo(userInfo);
     // загрузка карточек c сервера
     cardSection.setItem(initialCards, userInfo._id);
     cardSection.renderItems();
@@ -89,50 +96,49 @@ function handleCardClick(link, name) {
 };
 
 
-const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', PopupPatchProfile);
+ const popupEditProfileInstance = new PopupWithForm('.popup_edit-profile', handleProfileFormSubmit, true);
 popupEditProfileInstance.setEventListeners();
 
-const popupEditAvatarInstance = new PopupWithForm('.popup_edit-avatar', PopupChangeAvatar);
+const popupEditAvatarInstance = new PopupWithForm('.popup_edit-avatar', handleAvatarFormSubmit);
 popupEditAvatarInstance.setEventListeners();
 
-const popupAddCardInstance = new PopupWithForm('.popup_add-card', PopupAddCard);
+const popupAddCardInstance = new PopupWithForm('.popup_add-card', handleCardFormSubmit);
 popupAddCardInstance.setEventListeners();
 
 
 btnOpenEditCardForm.addEventListener('click', () => { //отслеживаем клик кнопки редактировать профиль
+  popupEditProfileInstance.setInputValues(userInfoInstance.getUserInfo());
   popupEditProfileInstance.openPopup();
-  profileValidator.reset();
+  profileValidator.resetValidation();
 });
-
 
 btnOpenEditAvatar.addEventListener('click', () => { //отслеживаем клик кнопки редактировать аватар
   popupEditAvatarInstance.openPopup();
-  avatarValidator.reset();
+  avatarValidator.resetValidation();
 });
-
 
 btnOpenAddCardForm.addEventListener('click', () => { //отслеживаем клик кнопки добавить карту
   popupAddCardInstance.openPopup();
-  addCardValidator.reset();
+  addCardValidator.resetValidation();
 });
 
 
-const profileValidator = new FormValidator(validateSelectors, '.popup_edit-profile'); //валидация формы редактирования профиля
+const profileValidator = new FormValidator(validateSelectors, formElementEdit); //валидация формы редактирования профиля
 profileValidator.enableValidation();
 
-const avatarValidator = new FormValidator(validateSelectors, '.popup_edit-avatar'); //валидация формы редактирования аватара
+const avatarValidator = new FormValidator(validateSelectors, formAvatarEdit); //валидация формы редактирования аватара
 avatarValidator.enableValidation();
 
-const addCardValidator = new FormValidator(validateSelectors, '.popup_add-card'); //валидация формы добавления карточки
+const addCardValidator = new FormValidator(validateSelectors, formElementAdd); //валидация формы добавления карточки
 addCardValidator.enableValidation();
 
 
 // функция редактирования аватара пользователя 
-function PopupChangeAvatar(avatar) {
+function handleAvatarFormSubmit(avatar) {
   submitBtnAvatar.textContent = 'Сохранение...';
   api.changeUserAvatar(avatar)
     .then((data) => {
-      UserInfoInstance.setUserInfo(data.avatar);
+      userInfoInstance.setUserInfo(data);
       popupEditAvatarInstance.closePopup();
     })
     .catch((err) => {
@@ -144,11 +150,11 @@ function PopupChangeAvatar(avatar) {
 }
 
 // функция редактирования профиля пользователя 
-function PopupPatchProfile(profileData) {
+function handleProfileFormSubmit(profileData) {
   submitBtnProfile.textContent = 'Сохранение...';
   api.patchProfileInfo(profileData)
     .then((data) => {
-      UserInfoInstance.setUserInfo(data);
+      userInfoInstance.setUserInfo(data);
       popupEditProfileInstance.closePopup();
     })
     .catch((err) => {
@@ -160,7 +166,7 @@ function PopupPatchProfile(profileData) {
 }
 
 // функция добавления новых карточек от пользователя 
-function PopupAddCard(cardData) {
+function handleCardFormSubmit(cardData) {
   submitBtnMesto.textContent = 'Создание...';
   api.postCard(cardData)
     .then((data) => {

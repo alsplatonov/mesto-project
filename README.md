@@ -8,3 +8,4 @@ Stack: HTML5, CSS3, Flex, Grip, позициование, БЭМ,  adaptive desi
 
 Соисполнитель : Валерий Голосной https://github.com/voice92 (Golosnoy92@yandex.ru)
 
+
